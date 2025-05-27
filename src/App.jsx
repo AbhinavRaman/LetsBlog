@@ -1,10 +1,12 @@
-import './App.css'
+import NavBar from "./assets/NavBar"
+import Hero from "./assets/Hero"
 
 function App() {
 
   return (
     <>
-      
+      <NavBar />
+      <Hero />
     </>
   )
 }
