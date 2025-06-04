@@ -2,6 +2,8 @@ import React from 'react'
 import Button from './Button'
 import MainVideo from '../Media/LetsBlog_MainVideo.mp4'
 import Image1 from '../Media/Image1.jpg'
+import Accordian from './Accordian'
+import Image2 from '../Media/Image2.jpg'
 
 const Hero = () => {
   return (
@@ -21,7 +23,14 @@ const Hero = () => {
         <div className='w-full flex items-center justify-center'>
           <img src={Image1} alt="Photographer" className='rounded-2xl m-5 w-[80%]'/>
         </div>
+        <div className="bg-white text-black p-4">
+          <Accordian/>
+        </div>
+        <div className='w-full flex items-center justify-center'>
+          <img src={Image2} alt="Weng Cheung" className='rounded-2xl m-5 w-[80%]'/>
+        </div>
       </div>
+      
     </section>
   )
 }
