@@ -26,7 +26,7 @@ const Accordian = () => {
         <div className="max-w-xl mx-auto mt-10">
             {data.map((item, index) => (
             <div key={index} className="border-b border-gray-300">
-                <button className="w-full text-left py-4 px-6 flex justify-between items-center hover:bg-gray-100 transition" onClick={() => toggle(index)}>
+                <button className="w-full text-left py-4 px-6 flex justify-between items-center hover:bg-gray-400 transition cursor-pointer" onClick={() => toggle(index)}>
                     <span className="font-medium text-lg">{item.question}</span>
                     <span className="text-xl">
                     {openIndex === index ? "−" : "+"}
