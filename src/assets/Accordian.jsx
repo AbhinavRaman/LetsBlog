@@ -33,7 +33,7 @@ const Accordian = () => {
                     </span>
                 </button>
                 {openIndex === index && (
-                <div className="px-6 pb-4 text-gray-700">{item.answer}</div>
+                <div className="px-6 pb-4 ">{item.answer}</div>
                 )}
             </div>
             ))}

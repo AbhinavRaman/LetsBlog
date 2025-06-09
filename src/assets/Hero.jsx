@@ -10,11 +10,11 @@ const Hero = () => {
   return (
     <section>
       <div className='w-full bg-white justify-center'>
-        <div className='w-full h-3/4 bg-[#151414] text-white flex flex-col p-4'>
+        <div className='w-full h-3/4 bg-[#151414] text-white flex flex-col p-12'>
             <HPB/>
             <video src={MainVideo} typeof='video/mp4' autoPlay loop muted className='rounded-2xl m-5 border-blue-400 border-8'></video>
         </div>
-        <div className='w-full flex flex-col p-4'>
+        <div className='w-full flex flex-col p-12'>
           <HPB/>
         </div>
         <div className='w-full flex items-center justify-center'>
