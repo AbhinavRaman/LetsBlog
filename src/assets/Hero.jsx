@@ -1,5 +1,3 @@
-import React from 'react'
-import Button from './Button'
 import MainVideo from '../Media/LetsBlog_MainVideo.mp4'
 import Image1 from '../Media/Image1.jpg'
 import Accordian from './Accordian'
