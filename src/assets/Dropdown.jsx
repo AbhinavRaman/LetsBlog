@@ -1,21 +1,39 @@
+import { useState } from 'react';
 
-const Dropdown = () => {
+const Dropdown = ({
+  options = [],
+  placeholder = 'Select an option',
+  className = '',
+}) => {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
-    <div>
-        <select name="products" id="products" className='bg-[#151414]'>
-            <option value="hosting">LetsBlog Hosting</option>
-            <option value="agencies">LetsBlog for Agencies</option>
-            <option value="affiliate">Become an Affiliate</option>
-            <option value="domain names">Domain Names</option>
-            <option value="ai">AI Website Builder</option>
-            <option value="create blog">Create a Blog</option>
-            <option value="newsletter">Newsletter</option>
-            <option value="professional email">Professional Email</option>
-            <option value="design services">Website Design Services</option>
-            <option value="commerce">Commerce</option>
-        </select>        
-    </div>
-  )
-}
+    <div
+      className={`relative inline-block text-left ${className}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Trigger */}
+      <div className="bg-[#151414] text-white p-2 rounded cursor-pointer">
+        {placeholder}
+      </div>
 
-export default Dropdown
+      {/* Dropdown Items */}
+      {isHovered && (
+        <div className="absolute left-0 mt-1 w-52 bg-[#1e1e1e] border border-gray-700 rounded shadow-lg z-10">
+          {options.map((option, index) => (
+            <div
+              key={index}
+              className="px-4 py-2 text-sm text-white hover:bg-[#333] cursor-pointer"
+              onClick={() => console.log(`Selected: ${option.value || option.label}`)}
+            >
+              {option.label}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Dropdown;

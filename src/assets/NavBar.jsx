@@ -1,22 +1,79 @@
-import logo from '../Media/LetsBlogNB.png'
-import Dropdown from './Dropdown'
+import { useState } from 'react';
+import logo from '../Media/LetsBlogNB.png';
+import Dropdown from './Dropdown';
 
 const NavBar = () => {
-  return (
-    <div className="w-full h-20 bg-[#151414] text-white flex justify-around items-center">
-      <div className='bg-[#151414] text-white flex items-center'>
-        <img src={logo} alt="logo" className='h-20'/>
-        <h1 className="logo text-2xl text-left font-mono font-semibold">LetsBlog.com</h1>
-      </div>
-      <div className='flex w-1/3 gap-3'>
-        <Dropdown />
-        <Dropdown />
-        <Dropdown />
-      </div>
-      <button className='p-2 border rounded'>Get Started</button>
-      <button className="text-2xl p-2 font-mono md:hidden">🟰</button>
-    </div>
-  )
-}
+  const [menuOpen, setMenuOpen] = useState(false);
 
-export default NavBar
+  return (
+    <nav className="w-full bg-[#151414] text-white">
+      <div className="flex justify-between items-center h-20 px-4 md:px-10">
+        {/* Logo + Title */}
+        <div className="flex items-center gap-3">
+          <img src={logo} alt="logo" className="h-12 md:h-16" />
+          <h1 className="text-xl md:text-2xl font-mono font-semibold">LetsBlog.com</h1>
+        </div>
+
+        {/* Desktop Menu */}
+        <div className="hidden md:flex gap-6 items-center">
+          <Dropdown 
+            placeholder="Products"
+            options={[
+              { label: "LetsBlog Hosting", value: "hosting" },
+              { label: "LetsBlog for Agencies", value: "agencies" },
+              { label: "Become an Affiliate", value: "affiliate" },
+              { label: "Domain Names", value: "domain-names" },
+              { label: "AI Website Builder", value: "ai" },
+              { label: "Create a Blog", value: "create-blog" },
+              { label: "Newsletter", value: "newsletter" },
+              { label: "Professional Email", value: "email" },
+              { label: "Website Design Services", value: "design" },
+              { label: "Commerce", value: "commerce" },
+            ]}
+          />
+          <Dropdown 
+            placeholder='Features'
+            options={[
+              {label: "Overview", value: "overview"},
+              {label: "LetsBlog Themes", value: "themes"},
+              {label: "LetsBlog Plugins", value: "plugins"},
+              {label: "LetsBlog Patterns", value: "patterns"},
+            ]}
+          />
+          <Dropdown
+            placeholder='Resources'
+            options={[
+              {label: "LetsBlog.com Support", value: "support"},
+              {label: "LetsBlog News", value: "news"},
+              {label: "Website Building Tips", value: "tips"},
+              {label: "Business Name Generator", value: "business name genrator"},
+              {label: "Blog Search", value: "search"}
+            ]}
+          />
+          <button className="p-2 rounded hover:bg-white hover:text-black transition cursor-pointer">Get Started</button>
+        </div>
+
+        {/* Hamburger Icon (Mobile) */}
+        <button
+          className="text-2xl md:hidden"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle Menu"
+        >
+          {menuOpen ? '✖' : '☰'}
+        </button>
+      </div>
+
+      {/* Mobile Dropdown Menu */}
+      {menuOpen && (
+        <div className="flex flex-col gap-4 px-4 pb-4 md:hidden">
+          <Dropdown />
+          <Dropdown />
+          <Dropdown />
+          <button className="p-2 border rounded hover:bg-white hover:text-black transition">Get Started</button>
+        </div>
+      )}
+    </nav>
+  );
+};
+
+export default NavBar;
