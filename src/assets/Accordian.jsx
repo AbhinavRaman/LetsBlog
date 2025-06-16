@@ -1,44 +1,38 @@
-import React, { useState } from "react"
+import React, { useState } from "react";
 
-const data = [
-  {
-    question: "What is React?",
-    answer: "React is a JavaScript library for building user interfaces.",
-  },
-  {
-    question: "What is Tailwind CSS?",
-    answer: "Tailwind CSS is a utility-first CSS framework for rapid UI development.",
-  },
-  {
-    question: "What is an Accordion?",
-    answer: "An accordion is a UI component that allows toggling visibility of content sections.",
-  },
-];
+const Accordion = ({
+  items = [],              // Array of { question, answer }
+  borderColor = "border-gray-300",
+  hoverBg = "hover:bg-gray-100",
+  questionClass = "font-medium text-lg",
+  answerClass = "px-6 pb-4 text-gray-700",
+  containerClass = "max-w-xl mx-auto mt-10",
+}) => {
+  const [openIndex, setOpenIndex] = useState(null);
 
-const Accordian = () => {
-    const [openIndex, setOpenIndex] = useState(null);
+  const toggle = (idx) => {
+    setOpenIndex(openIndex === idx ? null : idx);
+  };
 
-    const toggle = (index) => {
-        setOpenIndex(index === openIndex ? null : index);
-    };
+  return (
+    <div className={containerClass}>
+      {items.map((item, idx) => (
+        <div key={idx} className={`border-b ${borderColor}`}>
+          <button
+            className={`w-full text-left py-4 px-6 flex justify-between items-center transition cursor-pointer ${hoverBg}`}
+            onClick={() => toggle(idx)}
+          >
+            <span className={questionClass}>{item.question}</span>
+            <span className="text-xl">{openIndex === idx ? "−" : "+"}</span>
+          </button>
 
-    return (
-        <div className="max-w-xl mx-auto mt-10">
-            {data.map((item, index) => (
-            <div key={index} className="border-b border-gray-300">
-                <button className="w-full text-left py-4 px-6 flex justify-between items-center hover:bg-gray-400 transition cursor-pointer" onClick={() => toggle(index)}>
-                    <span className="font-medium text-lg">{item.question}</span>
-                    <span className="text-xl">
-                    {openIndex === index ? "−" : "+"}
-                    </span>
-                </button>
-                {openIndex === index && (
-                <div className="px-6 pb-4 ">{item.answer}</div>
-                )}
-            </div>
-            ))}
+          {openIndex === idx && (
+            <div className={answerClass}>{item.answer}</div>
+          )}
         </div>
-    )
-}
+      ))}
+    </div>
+  );
+};
 
-export default Accordian
+export default Accordion;

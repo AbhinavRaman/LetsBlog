@@ -1,10 +1,12 @@
-import HPB from "./HPB"
+import HP from "./HP"
+import Button from "./Button"
 
 const FooterBanner = () => {
   return (
     <section>
         <div className="w-full bg-blue-500 text-white p-4">
-            <HPB />
+            <HP />
+            <Button />
         </div>
     </section>
   )
