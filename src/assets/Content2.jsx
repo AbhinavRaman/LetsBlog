@@ -15,14 +15,18 @@ const Content2 = () => {
         <div>
             <HP />
             <Button />
-            <IHP />
-            <IHP />
-            <IHP />
-            <IHP />
+            <div className='md:flex'>
+              <IHP />
+              <IHP />
+              <IHP />
+              <IHP />
+            </div>
             <img src={Image} alt="Article Image" />
             <Slider />
-            <HP/>
-            <img src={Image1} alt="ScooterMan Image" />
+            <div className='md:flex md:items-center'>
+              <HP/>
+              <img src={Image1} alt="ScooterMan Image" className='md:w-1/2'/>
+            </div>
             <Accordian />
         </div>
     </section>

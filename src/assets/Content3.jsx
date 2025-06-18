@@ -10,41 +10,52 @@ const Content3 = () => {
             </div>
             <div>
                 <h1 className="text-3xl mb-4">Stats & Insights</h1>
-                <IHP />
-                <IHP />
+                <div className='md:flex'>
+                    <IHP />
+                    <IHP />
+                </div>
             </div>
             <div>
                 <h1 className="text-3xl mb-4">Design & Editing Tools</h1>
-                <IHP />
-                <IHP />
-                <IHP />
-                <IHP />
-                <IHP />
+                <div className='md:flex'>
+                    <IHP />
+                    <IHP />
+                    <IHP />
+                    <IHP />
+                    <IHP />
+                </div>
             </div>
             <div>
                 <h1 className="text-3xl mb-4">Marketing</h1>
-                <IHP />
-                <IHP />
-                <IHP />
-                <IHP />
-                <IHP />
-                <IHP />
+                <div className='md:flex'>
+                    <IHP />
+                    <IHP />
+                    <IHP />
+                    <IHP />
+                    <IHP />
+                    <IHP />
+                </div>
+                
             </div>
             <div>
                 <h1 className="text-3xl mb-4">Monetization Tools</h1>
-                <IHP />
-                <IHP />
-                <IHP />
-                <IHP />
+                <div className='md:flex'>
+                    <IHP />
+                    <IHP />
+                    <IHP />
+                    <IHP />
+                </div>
             </div>
             <div>
                 <h1 className="text-3xl mb-4">Site Management</h1>
-                <IHP />
-                <IHP />
-                <IHP />
-                <IHP />
-                <IHP />
-                <IHP />
+                <div className='md:flex'>
+                    <IHP />
+                    <IHP />
+                    <IHP />
+                    <IHP />
+                    <IHP />
+                    <IHP />
+                </div>
             </div>
         </div>
     </section>
