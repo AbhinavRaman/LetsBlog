@@ -8,7 +8,11 @@ const Content = () => {
     <section className='bg-[#101517] text-white p-12'>
       <div className='md:flex md:items-center'>
         <div>
-          <HP />
+          <HP
+            title='You do you.'
+            subtitle='You have got more on your plate than running a blog.
+            LetBlog.com meets you where you are.'
+          />
           <Button/>
         </div>
         <div className='w-full flex items-center justify-center'>

@@ -34,7 +34,10 @@ const Hero = () => {
 
       <div className='w-full bg-white justify-center md:flex md:flex-col md:items-center'>
         <div className='w-full flex flex-col justify-center md:w-[80%] p-10'>
-          <HP/>
+          <HP
+            title='Simple, meet flexible.'
+            subtitle='Whatever you’re publishing. Whoever your audience is. LetsBlog.com makes it simple to get started. And easy to expand your site as your audience grows.'
+          />
           <Button/>
         </div>
         <div className="flex flex-col-reverse md:flex-row md:items-center md:justify-center md:space-x-12 w-full md:px-16 lg:px-24 mt-8 md:mt-16 md:mb-16">
