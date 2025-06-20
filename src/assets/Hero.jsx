@@ -27,7 +27,10 @@ const Hero = () => {
       <div className='w-full bg-[#151414] justify-center md:flex md:flex-col md:items-center'>
         <div className='w-full md:w-[80%] h-3/4 text-white flex flex-col p-12'>
             <HP/>
-            <Button/>
+            <Button 
+              bgColor='bg-white'
+              textColor='text-black'
+            />
             <video src={MainVideo} typeof='video/mp4' autoPlay loop muted className='rounded-2xl m-5 border-blue-400 border-8'></video>
         </div>
       </div>
@@ -38,7 +41,10 @@ const Hero = () => {
             title='Simple, meet flexible.'
             subtitle='Whatever you’re publishing. Whoever your audience is. LetsBlog.com makes it simple to get started. And easy to expand your site as your audience grows.'
           />
-          <Button/>
+          <Button
+            bgColor='bg-[#151414]'
+            textColor='text-white'
+          />
         </div>
         <div className="flex flex-col-reverse md:flex-row md:items-center md:justify-center md:space-x-12 w-full md:px-16 lg:px-24 mt-8 md:mt-16 md:mb-16">
           <div className="p-4 md:p-0 md:w-1/2 lg:max-w-lg">

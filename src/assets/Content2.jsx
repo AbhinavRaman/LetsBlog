@@ -20,7 +20,10 @@ const Content2 = () => {
               subtitle="You made it. Now it's time to get it in front of people. With baked in SEO tools, bustling
               community, one-click social links, and a bunch of easy ways to get paid, you're all set."
             />
-            <Button />
+            <Button
+              bgColor='bg-[#151414]'
+              textColor='text-white'
+            />
             <div className='md:flex'>
               <IHP/>
               <IHP
