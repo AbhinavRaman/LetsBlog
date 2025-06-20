@@ -66,9 +66,40 @@ const NavBar = () => {
       {/* Mobile Dropdown Menu */}
       {menuOpen && (
         <div className="flex flex-col gap-4 px-4 pb-4 md:hidden">
-          <Dropdown />
-          <Dropdown />
-          <Dropdown />
+          <Dropdown 
+            placeholder="Products"
+            options={[
+              { label: "LetsBlog Hosting", value: "hosting" },
+              { label: "LetsBlog for Agencies", value: "agencies" },
+              { label: "Become an Affiliate", value: "affiliate" },
+              { label: "Domain Names", value: "domain-names" },
+              { label: "AI Website Builder", value: "ai" },
+              { label: "Create a Blog", value: "create-blog" },
+              { label: "Newsletter", value: "newsletter" },
+              { label: "Professional Email", value: "email" },
+              { label: "Website Design Services", value: "design" },
+              { label: "Commerce", value: "commerce" },
+            ]}
+          />
+          <Dropdown 
+            placeholder='Features'
+            options={[
+              {label: "Overview", value: "overview"},
+              {label: "LetsBlog Themes", value: "themes"},
+              {label: "LetsBlog Plugins", value: "plugins"},
+              {label: "LetsBlog Patterns", value: "patterns"},
+            ]}
+          />
+          <Dropdown
+            placeholder='Resources'
+            options={[
+              {label: "LetsBlog.com Support", value: "support"},
+              {label: "LetsBlog News", value: "news"},
+              {label: "Website Building Tips", value: "tips"},
+              {label: "Business Name Generator", value: "business name genrator"},
+              {label: "Blog Search", value: "search"}
+            ]}
+          />
           <button className="p-2 border rounded hover:bg-white hover:text-black transition">Get Started</button>
         </div>
       )}
