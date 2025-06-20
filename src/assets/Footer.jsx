@@ -19,8 +19,15 @@ const Footer = () => {
           </select>
         </div>
         <div className="flex justify-around p-4">
-          <Button />
-          <Button />
+          <Button 
+            text="Instagram"
+            bgColor="bg-red-400"
+            link="https://www.google.com/"
+          />
+          <Button
+            text="LinkedIn"
+            bgColor="bg-blue-400"
+          />
         </div>
         <div className="flex justify-center mt-4 pb-7">
           <img src={icon} alt="" className="h-12"/>
