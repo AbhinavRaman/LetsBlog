@@ -1,4 +1,4 @@
-import Image3 from '../Media/Image3.jpg'
+import ShoesImg from '../Media/Image3.jpg'
 import Accordian from './Accordian'
 import HP from './HP'
 import Button from './Button'
@@ -16,7 +16,7 @@ const Content = () => {
           <Button/>
         </div>
         <div className='w-full flex items-center justify-center'>
-          <img src={Image3} alt="Shoes" className='rounded-2xl m-5 w-[80%]'/>
+          <img src={ShoesImg} alt="Shoes" className='rounded-2xl m-5 w-[80%]'/>
         </div>
       </div>
         <div className="p-4">
