@@ -12,8 +12,26 @@ import Button from './Button'
 import audienceIcon from '../Media/Icon2.png'
 import socialIcon from '../Media/Icon3.png'
 import paymentIcon from '../Media/Icon4.png'
+import { useNavigate } from "react-router-dom";
+
+const faqItems = [
+  {
+    question: "Blog Beautifully",
+    answer: "Customize your blog’s look and feel in a couple of clicks with beautifully designed themes. Bring your writing to life with magical drag-and-drop layouts. Or put your fingerprint on every font, color, and element on the page.",
+  },
+  {
+    question: "Edit Easily",
+    answer: "From simple and clean to glossy magazine – whatever your publishing style, the intuitive block editor adapts to you. Drag, drop, and easily swap out your menu, punch in a pull quote, or make your post pop with a beautiful gallery. Just like that.",
+  },
+  {
+    question: "Share anything, simply",
+    answer: "From video to audio, stories to GIFs, bring it all together—right from where you write. And with plenty of storage for every type of media, your content’s secure, easy to reuse anywhere on your blog, and owned by you alone."
+  }
+];
 
 const Content2 = () => {
+  const navigate = useNavigate();
+
   return (
     <section className='p-12'>
         <div>
@@ -25,6 +43,7 @@ const Content2 = () => {
             <Button
               bgColor='bg-[#151414]'
               textColor='text-white'
+              onClick={() => navigate("/editor")}
             />
 
             <div className='md:flex'>
@@ -63,7 +82,13 @@ const Content2 = () => {
               />
               <img src={ScooterManImg} alt="ScooterMan Image" className='md:w-1/2'/>
             </div>
-            <Accordian />
+            <Accordian 
+              items={faqItems}
+              borderColor="border-blue-200"
+              hoverBg="hover:bg-blue-50"
+              questionClass="font-semibold text-xl text-blue-800"
+              answerClass="px-6 pb-4 text-gray-600"
+            />
         </div>
     </section>
   )

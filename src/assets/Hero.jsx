@@ -4,6 +4,7 @@ import Accordian from './Accordian'
 import Image2 from '../Media/Image2.jpg'
 import HP from './HP'
 import Button from './Button'
+import { useNavigate } from "react-router-dom";
 
 const faqItems = [
   {
@@ -21,6 +22,7 @@ const faqItems = [
 ];
 
 const Hero = () => {
+  const navigate = useNavigate();
   return (
     <section>
       
@@ -30,6 +32,7 @@ const Hero = () => {
             <Button 
               bgColor='bg-white'
               textColor='text-black'
+              onClick={() => navigate("/editor")}
             />
             <video src={MainVideo} typeof='video/mp4' autoPlay loop muted className='rounded-2xl m-5 border-blue-400 border-8'></video>
         </div>
@@ -56,7 +59,7 @@ const Hero = () => {
               answerClass="px-6 pb-4 text-gray-600"
             />
           </div>
-
+ 
           <div className="flex justify-center md:w-1/2">
             <img
               src={Image1}
