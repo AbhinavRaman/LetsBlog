@@ -32,12 +32,10 @@ const Footer = () => {
         <Button
           text="Instagram"
           bgColor="bg-red-400"
-          onClick={() => navigate("/editor")}
         />
         <Button
           text="LinkedIn"
           bgColor="bg-blue-400"
-          onClick={() => navigate("/editor")}
         />
       </div>
 
