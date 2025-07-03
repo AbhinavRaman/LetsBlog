@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 const faqItems = [
   {
     question: "Blog Beautifully",
-    answer: "Customize your blog’s look and feel in a couple of clicks with beautifully designed themes. Bring your writing to life with magical drag-and-drop layouts. Or put your fingerprint on every font, color, and element on the page.",
+    answer: "Customize your blog's look and feel in a couple of clicks with beautifully designed themes. Bring your writing to life with magical drag-and-drop layouts. Or put your fingerprint on every font, color, and element on the page.",
   },
   {
     question: "Edit Easily",
@@ -17,7 +17,7 @@ const faqItems = [
   },
   {
     question: "Share anything, simply",
-    answer: "From video to audio, stories to GIFs, bring it all together—right from where you write. And with plenty of storage for every type of media, your content’s secure, easy to reuse anywhere on your blog, and owned by you alone."
+    answer: "From video to audio, stories to GIFs, bring it all together—right from where you write. And with plenty of storage for every type of media, your content's secure, easy to reuse anywhere on your blog, and owned by you alone."
   }
 ];
 
@@ -28,7 +28,7 @@ const Hero = () => {
       
       <div className='w-full bg-[#151414] justify-center md:flex md:flex-col md:items-center'>
         <div className='w-full md:w-[80%] h-3/4 text-white flex flex-col p-12'>
-            <HP/>
+            <HP textColor='text-black'/>
             <Button 
               bgColor='bg-white'
               textColor='text-black'
@@ -39,10 +39,11 @@ const Hero = () => {
       </div>
 
       <div className='w-full bg-white justify-center md:flex md:flex-col md:items-center'>
-        <div className='w-full flex flex-col justify-center md:w-[80%] p-10'>
+        <div className='w-full md:w-[80%] h-3/4 flex flex-col p-10'>
           <HP
-            title='Simple, meet flexible.'
-            subtitle='Whatever you’re publishing. Whoever your audience is. LetsBlog.com makes it simple to get started. And easy to expand your site as your audience grows.'
+            title="Simple, meet flexible."
+            subtitle="Whatever you're publishing. Whoever your audience is. LetsBlog.com makes it simple to get started. And easy to expand your site as your audience grows."
+            textColor="text-black"
           />
           <Button
             bgColor='bg-[#151414]'

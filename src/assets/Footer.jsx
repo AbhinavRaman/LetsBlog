@@ -1,57 +1,16 @@
-import Accordian from "./Accordian";
-import Button from "./Button";
-import icon from "../Media/Icon1.png";
-import { useNavigate } from "react-router-dom";
 import React from "react";
 
 const Footer = () => {
-  const navigate = useNavigate();
-
   return (
-    <section className="bg-[#101517] text-white">
-      <div className="p-10">
-        <h1 className="text-4xl">LetsBlog.com</h1>
-        <Accordian />
+    <footer className="bg-[#101517] text-white py-10 mt-8 shadow-inner">
+      <div className="flex flex-col items-center justify-center gap-2">
+        <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-2">LetssBlog.com</h1>
+        <p className="text-center text-sm md:text-base max-w-xl opacity-80 mb-2">
+          LetssBlog.com is your modern platform for sharing stories, ideas, and expertise. Effortlessly create, customize, and grow your blog with intuitive tools and a vibrant community.
+        </p>
+        <span className="text-xs opacity-60">&copy; {new Date().getFullYear()} LetssBlog.com. All rights reserved.</span>
       </div>
-
-      <div className="w-full flex justify-center p-4">
-        <select
-          name="language"
-          id="language"
-          className="p-4 mt-4 w-2/3 cursor-pointer border rounded"
-        >
-          <option value="hindi" className="text-black">Hindi</option>
-          <option value="english" className="text-black">English</option>
-          <option value="spanish" className="text-black">Spanish</option>
-          <option value="japanese" className="text-black">Japanese</option>
-        </select>
-      </div>
-
-      {/* Buttons that navigate to /editor */}
-      <div className="flex justify-around p-4">
-        <Button
-          text="Instagram"
-          bgColor="bg-red-400"
-        />
-        <Button
-          text="LinkedIn"
-          bgColor="bg-blue-400"
-        />
-      </div>
-
-      <div className="flex justify-center mt-4 pb-7">
-        <img src={icon} alt="" className="h-12" />
-        <img src={icon} alt="" className="h-12" />
-        <img src={icon} alt="" className="h-12" />
-        <img src={icon} alt="" className="h-12" />
-      </div>
-
-      <div className="text-center p-5">
-        <h2>
-          LetsBlog.com <br /> By Abhinav Raman
-        </h2>
-      </div>
-    </section>
+    </footer>
   );
 };
 
