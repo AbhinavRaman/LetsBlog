@@ -4,6 +4,7 @@ import Accordian from './Accordian'
 import Image2 from '../Media/Image2.jpg'
 import HP from './HP'
 import Button from './Button'
+import Image from '../Media/Image4.png'
 import { useNavigate } from "react-router-dom";
 
 const faqItems = [
@@ -38,26 +39,27 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className='w-full bg-white justify-center md:flex md:flex-col md:items-center'>
+      <div className='w-full justify-center md:flex md:flex-col md:items-center'>
         <div className='w-full md:w-[80%] h-3/4 flex flex-col p-10'>
           <HP
             title="Simple, meet flexible."
             subtitle="Whatever you're publishing. Whoever your audience is. LetsBlog.com makes it simple to get started. And easy to expand your site as your audience grows."
             textColor="text-black"
           />
-          <Button
-            bgColor='bg-[#151414]'
-            textColor='text-white'
-          />
         </div>
+        <Button
+            bgColor='bg-white'
+            textColor='text-black'
+          />
+
         <div className="flex flex-col-reverse md:flex-row md:items-center md:justify-center md:space-x-12 w-full md:px-16 lg:px-24 mt-8 md:mt-16 md:mb-16">
           <div className="p-4 md:p-0 md:w-1/2 lg:max-w-lg">
             <Accordian
               items={faqItems}
-              borderColor="border-blue-200"
-              hoverBg="hover:bg-blue-50"
-              questionClass="font-semibold text-xl text-blue-800"
-              answerClass="px-6 pb-4 text-gray-600"
+              borderColor="border-blue-500"
+              hoverBg="hover:bg-zinc-500"
+              questionClass="font-semibold text-xl text-white"
+              answerClass="px-6 pb-4 text-white"
             />
           </div>
  
@@ -72,6 +74,10 @@ const Hero = () => {
 
         <div className='w-full flex items-center justify-center md:w-[80%]'>
           <img src={Image2} alt="Weng Cheung" className='rounded-2xl m-5 w-[80%]'/>
+        </div>
+
+        <div className='w-full flex items-center justify-center md:w-[80%]'>
+          <img src={Image} alt="Article Image" className='rounded-2xl m-5 w-[80%]'/>
         </div>
       </div>
 

@@ -1,15 +1,18 @@
 import React from 'react';
-import Hero from '../components/Hero';
-import Content2 from '../components/Content2';
-import FooterBanner from '../components/FooterBanner';
-import Footer from '../components/Footer';
+import NavBar from '../assets/NavBar';
+import Hero from '../assets/Hero';
+import FooterBanner from '../assets/FooterBanner';
+import Footer from '../assets/Footer';
 
 const Home = () => (
   <>
+  <div className='bg-[#101517]'>
+    <NavBar />
     <Hero />
-    <Content2 />
     <FooterBanner />
     <Footer />
+  </div>
+    
   </>
 );
 

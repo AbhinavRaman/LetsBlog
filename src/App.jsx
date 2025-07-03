@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./assets/NavBar";
 import Hero from "./assets/Hero";
-import Content from "./assets/Content";
-import Content2 from "./assets/Content2";
 import FooterBanner from "./assets/FooterBanner";
 import Footer from "./assets/Footer";
 import TextEditor from "./assets/TextEditor";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 function App() {
   return (
@@ -17,14 +17,14 @@ function App() {
             <>
               <NavBar />
               <Hero />
-              <Content />
-              <Content2 />
               <FooterBanner />
               <Footer />
             </>
           }
         />
         <Route path="/editor" element={<TextEditor />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </Router>
   );
