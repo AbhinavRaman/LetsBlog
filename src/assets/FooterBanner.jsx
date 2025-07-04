@@ -1,7 +1,9 @@
 import HP from "./HP"
 import Button from "./Button"
+import { useNavigate } from "react-router-dom";
 
 const FooterBanner = () => {
+  const navigate = useNavigate();
   return (
     <section className="w-full flex items-center justify-center">
       <div className="w-[90%] rounded-3xl bg-blue-500 text-white p-4 flex flex-col items-center justify-center">
@@ -11,7 +13,11 @@ const FooterBanner = () => {
           textColor="text-black"
           className="bg-transparent p-0 rounded-none shadow-none"
         />
-        <Button className="mt-4" bgColor="bg-white" textColor="text-black" />
+        <Button
+          bgColor='bg-white'
+          textColor='text-black'
+          onClick={() => navigate("/editor")}
+        />
       </div>
     </section>
     

@@ -48,9 +48,10 @@ const Hero = () => {
           />
         </div>
         <Button
-            bgColor='bg-white'
-            textColor='text-black'
-          />
+          bgColor='bg-white'
+          textColor='text-black'
+          onClick={() => navigate("/editor")}
+        />
 
         <div className="flex flex-col-reverse md:flex-row md:items-center md:justify-center md:space-x-12 w-full md:px-16 lg:px-24 mt-8 md:mt-16 md:mb-16">
           <div className="p-4 md:p-0 md:w-1/2 lg:max-w-lg">
