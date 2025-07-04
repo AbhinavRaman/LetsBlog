@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { db } from '../assets/firebase';
+import { doc, setDoc } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
 
 const Register = () => {
   const { register } = useAuth();
@@ -16,7 +19,18 @@ const Register = () => {
     setError('');
     setSuccess('');
     try {
-      await register(email, password);
+      // Register user with Firebase Auth
+      const userCredential = await register(email, password);
+      const user = userCredential?.user || getAuth().currentUser;
+
+      // Save profile to Firestore
+      await setDoc(doc(db, "users", user.uid), {
+        name,
+        age,
+        gender,
+        email
+      });
+
       setSuccess(`Account created for ${name} (${gender}, ${age}). You can now log in.`);
       setName('');
       setAge('');
