@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
 import { Editor, EditorState, RichUtils } from 'draft-js';
 import 'draft-js/dist/Draft.css';
+import { useAuth } from '../context/AuthContext';
 
 const TextEditor = () => {
   const [title, setTitle] = useState('');
   const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
+  const { user } = useAuth();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!user) {
+      alert('Login first to publish');
+      return;
+    }
     // You can handle the blog post data here (title, editorState)
     // For now, just log it
     console.log({ title, editorState });
