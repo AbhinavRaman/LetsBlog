@@ -1,4 +1,6 @@
-import React, { useContext, createContext, useState } from "react";
+import React, { useContext, createContext, useState, useEffect } from "react";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
+import app from '../assets/firebase';
 
 // Create the context
 const AuthContext = createContext();
@@ -11,23 +13,40 @@ export function useAuth() {
 // Provider component
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const auth = getAuth(app);
 
-  // Dummy register and login functions (replace with real Firebase logic)
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+      setUser(firebaseUser);
+      setLoading(false);
+    });
+    return unsubscribe;
+  }, [auth]);
+
   const register = async (email, password) => {
-    // Replace with your registration logic
-    setUser({ email });
+    return await createUserWithEmailAndPassword(auth, email, password);
   };
 
   const login = async (email, password) => {
-    // Replace with your login logic
-    setUser({ email });
+    return await signInWithEmailAndPassword(auth, email, password);
+  };
+
+  const logout = async () => {
+    await signOut(auth);
+    setUser(null);
   };
 
   const value = {
     user,
     register,
     login,
+    logout,
   };
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={value}>
+      {!loading && children}
+    </AuthContext.Provider>
+  );
 } 

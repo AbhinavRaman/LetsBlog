@@ -1,22 +1,37 @@
 import React, { useState } from 'react';
-import { Editor, EditorState, RichUtils } from 'draft-js';
+import { Editor, EditorState, RichUtils, convertToRaw } from 'draft-js';
 import 'draft-js/dist/Draft.css';
 import { useAuth } from '../context/AuthContext';
+import { db } from '../assets/firebase';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
 
 const TextEditor = () => {
   const [title, setTitle] = useState('');
+  const [tags, setTags] = useState('');
   const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
   const { user } = useAuth();
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!user) {
       alert('Login first to publish');
       return;
     }
-    // You can handle the blog post data here (title, editorState)
-    // For now, just log it
-    console.log({ title, editorState });
+    try {
+      await addDoc(collection(db, 'posts'), {
+        title,
+        content: JSON.stringify(convertToRaw(editorState.getCurrentContent())),
+        tags: tags.split(',').map(tag => tag.trim()).filter(Boolean),
+        author: user.email,
+        authorId: user.uid,
+        createdAt: serverTimestamp(),
+      });
+      navigate('/posts');
+    } catch (err) {
+      alert('Failed to publish post.');
+    }
   };
 
   const handleKeyCommand = (command, editorState) => {
@@ -51,9 +66,21 @@ const TextEditor = () => {
               value={title}
               onChange={e => setTitle(e.target.value)}
               placeholder="Enter your blog title..."
+              required
             />
           </div>
-          
+
+          {/* Tags Input */}
+          <div className="mb-8">
+            <label htmlFor="tags" className="block text-2xl font-semibold mb-4">Tags</label>
+            <input
+              type="text"
+              className="w-full bg-white text-black border-0 rounded-lg p-4 text-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all"
+              value={tags}
+              onChange={e => setTags(e.target.value)}
+              placeholder="e.g. tech, travel, food"
+            />
+          </div>
           {/* Editor Section */}
           <div className="mb-8">
             <label className="block text-2xl font-semibold mb-4">Content</label>
@@ -84,7 +111,6 @@ const TextEditor = () => {
                   </button>
                 </div>
               </div>
-              
               {/* Editor */}
               <div className="p-4 min-h-[300px] md:min-h-[400px] text-black">
                 <Editor

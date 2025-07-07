@@ -4,6 +4,16 @@ import { db } from '../assets/firebase';
 import { doc, getDoc, collection, query, where, getDocs, deleteDoc } from 'firebase/firestore';
 import { useNavigate, Link } from 'react-router-dom';
 
+// Helper to extract plain text from Draft.js raw content
+function getPlainTextFromContent(content) {
+  try {
+    const raw = JSON.parse(content);
+    return raw.blocks.map(block => block.text).join(' ');
+  } catch {
+    return '';
+  }
+}
+
 const Profile = () => {
   const { user, logout } = useAuth();
   const [profile, setProfile] = useState(null);
@@ -72,22 +82,25 @@ const Profile = () => {
         <h3 className="text-xl font-bold mb-4">Your Posts</h3>
         {posts.length === 0 && <div>No posts yet.</div>}
         <div className="space-y-6">
-          {posts.map(post => (
-            <div key={post.id} className="bg-[#222] p-6 rounded-lg shadow-lg">
-              <Link to={`/posts/${post.id}`}>
-                <h4 className="text-lg font-bold mb-2 hover:underline">{post.title}</h4>
-              </Link>
-              <div className="mb-2 text-sm opacity-70">
-                {post.createdAt?.toDate ? `on ${post.createdAt.toDate().toLocaleString()}` : ''}
+          {posts.map(post => {
+            const preview = getPlainTextFromContent(post.content).slice(0, 120);
+            return (
+              <div key={post.id} className="bg-[#222] p-6 rounded-lg shadow-lg">
+                <Link to={`/posts/${post.id}`}>
+                  <h4 className="text-lg font-bold mb-2 hover:underline">{post.title}</h4>
+                </Link>
+                <div className="mb-2 text-sm opacity-70">
+                  {post.createdAt?.toDate ? `on ${post.createdAt.toDate().toLocaleString()}` : ''}
+                </div>
+                <div className="mb-2">{preview}{preview.length === 120 ? '...' : ''}</div>
+                <div className="text-xs opacity-60 mb-2">{post.tags && post.tags.join(', ')}</div>
+                <div className="flex gap-4">
+                  <Link to={`/posts/${post.id}/edit`} className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded">Edit</Link>
+                  <button onClick={() => handleDelete(post.id)} className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded">Delete</button>
+                </div>
               </div>
-              <div className="mb-2">{post.content.slice(0, 120)}{post.content.length > 120 ? '...' : ''}</div>
-              <div className="text-xs opacity-60 mb-2">{post.tags && post.tags.join(', ')}</div>
-              <div className="flex gap-4">
-                <Link to={`/posts/${post.id}/edit`} className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded">Edit</Link>
-                <button onClick={() => handleDelete(post.id)} className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded">Delete</button>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>

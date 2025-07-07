@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { db } from '../assets/firebase';
 import { doc, setDoc } from 'firebase/firestore';
-import { getAuth } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const { register } = useAuth();
@@ -13,6 +13,7 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,22 +22,18 @@ const Register = () => {
     try {
       // Register user with Firebase Auth
       const userCredential = await register(email, password);
-      const user = userCredential?.user || getAuth().currentUser;
+      const user = userCredential.user;
 
       // Save profile to Firestore
       await setDoc(doc(db, "users", user.uid), {
         name,
         age,
         gender,
-        email
+        email: user.email
       });
 
-      setSuccess(`Account created for ${name} (${gender}, ${age}). You can now log in.`);
-      setName('');
-      setAge('');
-      setGender('');
-      setEmail('');
-      setPassword('');
+      setSuccess(`Account created for ${name} (${gender}, ${age}). Redirecting to dashboard...`);
+      setTimeout(() => navigate('/profile'), 1200);
     } catch (err) {
       setError(err.message);
     }

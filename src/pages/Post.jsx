@@ -3,11 +3,13 @@ import { db } from '../assets/firebase';
 import { doc, getDoc, deleteDoc } from 'firebase/firestore';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { Editor, EditorState, convertFromRaw } from 'draft-js';
 
 const Post = () => {
   const { id } = useParams();
   const { user } = useAuth();
   const [post, setPost] = useState(null);
+  const [editorState, setEditorState] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -18,7 +20,16 @@ const Post = () => {
         const docRef = doc(db, 'posts', id);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
-          setPost({ id: docSnap.id, ...docSnap.data() });
+          const data = docSnap.data();
+          setPost({ id: docSnap.id, ...data });
+          if (data.content) {
+            try {
+              const rawContent = JSON.parse(data.content);
+              setEditorState(EditorState.createWithContent(convertFromRaw(rawContent)));
+            } catch {
+              setEditorState(null);
+            }
+          }
         } else {
           setError('Post not found.');
         }
@@ -49,7 +60,13 @@ const Post = () => {
         <div className="mb-2 text-sm opacity-70">
           By {post.author} {post.createdAt?.toDate ? `on ${post.createdAt.toDate().toLocaleString()}` : ''}
         </div>
-        <div className="mb-4">{post.content}</div>
+        <div className="mb-4">
+          {editorState ? (
+            <Editor editorState={editorState} readOnly={true} onChange={() => {}} />
+          ) : (
+            <div>{post.content && typeof post.content === 'string' ? post.content.slice(0, 200) : ''}</div>
+          )}
+        </div>
         <div className="text-xs opacity-60 mb-4">{post.tags && post.tags.join(', ')}</div>
         {user && user.uid === post.authorId && (
           <div className="flex gap-4">

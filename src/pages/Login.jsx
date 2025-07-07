@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const { login } = useAuth();
@@ -7,6 +8,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,9 +16,8 @@ const Login = () => {
     setSuccess('');
     try {
       await login(email, password);
-      setSuccess('Logged in successfully!');
-      setEmail('');
-      setPassword('');
+      setSuccess('Logged in successfully! Redirecting to dashboard...');
+      setTimeout(() => navigate('/profile'), 1200);
     } catch (err) {
       setError(err.message);
     }
