@@ -19,6 +19,12 @@ const NavBar = () => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex gap-6 items-center">
+          {/* Home button - always visible */}
+          <button
+            className="p-2 px-6 rounded-full bg-blue-700 text-white font-semibold hover:bg-blue-800 transition cursor-pointer shadow-md"
+            onClick={() => navigate('/')}
+          >Home</button>
+          
           {!user && (
             <>
               <button 
@@ -62,6 +68,12 @@ const NavBar = () => {
       {/* Mobile Dropdown Menu */}
       {menuOpen && (
         <div className="flex flex-col gap-4 px-4 pb-4 md:hidden bg-[#151414]">
+          {/* Home button - always visible */}
+          <button
+            className="p-2 border rounded-full bg-blue-700 text-white font-semibold hover:bg-blue-800 transition shadow-md"
+            onClick={() => navigate('/')}
+          >Home</button>
+          
           {!user && (
             <>
               <button 

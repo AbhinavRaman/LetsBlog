@@ -4,6 +4,7 @@ import { doc, getDoc, deleteDoc } from 'firebase/firestore';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Editor, EditorState, convertFromRaw } from 'draft-js';
+import NavBar from '../assets/NavBar';
 
 const Post = () => {
   const { id } = useParams();
@@ -54,26 +55,29 @@ const Post = () => {
   if (!post) return null;
 
   return (
-    <div className="min-h-screen bg-[#151414] text-white p-8 flex flex-col items-center">
-      <div className="bg-[#222] p-8 rounded-lg shadow-lg w-full max-w-2xl">
-        <h2 className="text-3xl font-bold mb-4">{post.title}</h2>
-        <div className="mb-2 text-sm opacity-70">
-          By {post.author} {post.createdAt?.toDate ? `on ${post.createdAt.toDate().toLocaleString()}` : ''}
-        </div>
-        <div className="mb-4">
-          {editorState ? (
-            <Editor editorState={editorState} readOnly={true} onChange={() => {}} />
-          ) : (
-            <div>{post.content && typeof post.content === 'string' ? post.content.slice(0, 200) : ''}</div>
+    <div className="min-h-screen bg-[#151414] text-white">
+      <NavBar />
+      <div className="p-8 flex flex-col items-center">
+        <div className="bg-[#222] p-8 rounded-lg shadow-lg w-full max-w-2xl">
+          <h2 className="text-3xl font-bold mb-4">{post.title}</h2>
+          <div className="mb-2 text-sm opacity-70">
+            By {post.author} {post.createdAt?.toDate ? `on ${post.createdAt.toDate().toLocaleString()}` : ''}
+          </div>
+          <div className="mb-4">
+            {editorState ? (
+              <Editor editorState={editorState} readOnly={true} onChange={() => {}} />
+            ) : (
+              <div>{post.content && typeof post.content === 'string' ? post.content.slice(0, 200) : ''}</div>
+            )}
+          </div>
+          <div className="text-xs opacity-60 mb-4">{post.tags && post.tags.join(', ')}</div>
+          {user && user.uid === post.authorId && (
+            <div className="flex gap-4">
+              <Link to={`/posts/${id}/edit`} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Edit</Link>
+              <button onClick={handleDelete} className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">Delete</button>
+            </div>
           )}
         </div>
-        <div className="text-xs opacity-60 mb-4">{post.tags && post.tags.join(', ')}</div>
-        {user && user.uid === post.authorId && (
-          <div className="flex gap-4">
-            <Link to={`/posts/${id}/edit`} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Edit</Link>
-            <button onClick={handleDelete} className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">Delete</button>
-          </div>
-        )}
       </div>
     </div>
   );

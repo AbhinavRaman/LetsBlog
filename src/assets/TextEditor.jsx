@@ -5,6 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import { db } from '../assets/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
+import NavBar from './NavBar';
 
 const TextEditor = () => {
   const [title, setTitle] = useState('');
@@ -49,6 +50,7 @@ const TextEditor = () => {
 
   return (
     <div className="min-h-screen bg-[#151414] text-white">
+      <NavBar />
       <div className="w-full md:w-[80%] mx-auto p-8 md:p-12">
         <form onSubmit={handleSubmit} className="max-w-4xl mx-auto">
           {/* Header */}

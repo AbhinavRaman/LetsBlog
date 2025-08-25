@@ -5,6 +5,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Editor, EditorState, convertFromRaw, convertToRaw } from 'draft-js';
 import 'draft-js/dist/Draft.css';
+import NavBar from '../assets/NavBar';
 
 const EditPost = () => {
   const { id } = useParams();
@@ -73,36 +74,39 @@ const EditPost = () => {
   if (error) return <div className="text-center mt-10 text-red-400">{error}</div>;
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#151414] text-white">
-      <form onSubmit={handleSubmit} className="bg-[#222] p-8 rounded-lg shadow-lg w-full max-w-lg">
-        <h2 className="text-2xl font-bold mb-6">Edit Post</h2>
-        <input
-          type="text"
-          placeholder="Title"
-          className="w-full mb-4 p-3 rounded bg-[#181818] border border-gray-700 text-white focus:outline-none"
-          value={title}
-          onChange={e => setTitle(e.target.value)}
-          required
-        />
-        <div className="mb-4">
-          <label className="block mb-2">Content</label>
-          <div className="bg-white rounded border border-gray-300 p-2 min-h-[200px] text-black">
-            <Editor
-              editorState={editorState}
-              onChange={setEditorState}
-              placeholder="Edit your article..."
-            />
+    <div className="min-h-screen bg-[#151414] text-white">
+      <NavBar />
+      <div className="flex items-center justify-center min-h-screen">
+        <form onSubmit={handleSubmit} className="bg-[#222] p-8 rounded-lg shadow-lg w-full max-w-lg">
+          <h2 className="text-2xl font-bold mb-6">Edit Post</h2>
+          <input
+            type="text"
+            placeholder="Title"
+            className="w-full mb-4 p-3 rounded bg-[#181818] border border-gray-700 text-white focus:outline-none"
+            value={title}
+            onChange={e => setTitle(e.target.value)}
+            required
+          />
+          <div className="mb-4">
+            <label className="block mb-2">Content</label>
+            <div className="bg-white rounded border border-gray-300 p-2 min-h-[200px] text-black">
+              <Editor
+                editorState={editorState}
+                onChange={setEditorState}
+                placeholder="Edit your article..."
+              />
+            </div>
           </div>
-        </div>
-        <input
-          type="text"
-          placeholder="Tags (comma separated)"
-          className="w-full mb-6 p-3 rounded bg-[#181818] border border-gray-700 text-white focus:outline-none"
-          value={tags}
-          onChange={e => setTags(e.target.value)}
-        />
-        <button type="submit" className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded transition-colors">Update</button>
-      </form>
+          <input
+            type="text"
+            placeholder="Tags (comma separated)"
+            className="w-full mb-6 p-3 rounded bg-[#181818] border border-gray-700 text-white focus:outline-none"
+            value={tags}
+            onChange={e => setTags(e.target.value)}
+          />
+          <button type="submit" className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded transition-colors">Update</button>
+        </form>
+      </div>
     </div>
   );
 };
