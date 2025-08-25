@@ -1,12 +1,35 @@
-# React + Vite
+# LetsBlog
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple blogging platform with rich text editing and user authentication.
 
-Currently, two official plugins are available:
+## What it is
+- Create, edit, and read blog posts in a clean, responsive UI.
+- Login/register with Firebase Authentication.
+- Posts are stored in Firebase Firestore.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech stack
+- React + Vite
+- Firebase (Auth, Firestore)
+- CSS
 
-## Expanding the ESLint configuration
+## Quick start
+```
+npm install
+npm run dev
+```
+Open `http://localhost:5173`. Configure Firebase in `src/assets/firebase.js`.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Project structure (brief)
+```
+src/
+  App.jsx, main.jsx, index.css
+  assets/ (UI components, TextEditor, firebase.js)
+  pages/ (Home, PostsList, Post, EditPost, Login, Register, Profile)
+  context/ (AuthContext)
+  Media/ (images, icons, video)
+```
+
+## Links
+- Live demo: <add link>
+- Repo: <add link>
+
