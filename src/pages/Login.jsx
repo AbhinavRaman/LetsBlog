@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import NavBar from '../assets/NavBar';
 
 const Login = () => {
-  const { login } = useAuth();
+  const { login, logout } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -16,7 +16,13 @@ const Login = () => {
     setError('');
     setSuccess('');
     try {
-      await login(email, password);
+      const credential = await login(email, password);
+      const signedInUser = credential.user;
+      if (!signedInUser.emailVerified) {
+        await logout();
+        setError('Please verify your email before logging in. Check your inbox.');
+        return;
+      }
       setSuccess('Logged in successfully! Redirecting to dashboard...');
       setTimeout(() => navigate('/profile'), 1200);
     } catch (err) {

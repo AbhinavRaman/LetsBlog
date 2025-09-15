@@ -25,7 +25,7 @@ const Register = () => {
       const userCredential = await register(email, password);
       const user = userCredential.user;
 
-      // Save profile to Firestore
+      // Save profile to Firestore (must occur while user is still signed in)
       await setDoc(doc(db, "users", user.uid), {
         name,
         age,
@@ -33,8 +33,8 @@ const Register = () => {
         email: user.email
       });
 
-      setSuccess(`Account created for ${name} (${gender}, ${age}). Redirecting to dashboard...`);
-      setTimeout(() => navigate('/profile'), 1200);
+      setSuccess(`Account created. A verification email was sent to ${email}. Please verify your email, then log in.`);
+      setTimeout(() => navigate('/login'), 1500);
     } catch (err) {
       setError(err.message);
     }

@@ -1,5 +1,5 @@
 import React, { useContext, createContext, useState, useEffect } from "react";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, sendEmailVerification } from "firebase/auth";
 import app from '../assets/firebase';
 
 // Create the context
@@ -25,7 +25,15 @@ export function AuthProvider({ children }) {
   }, [auth]);
 
   const register = async (email, password) => {
-    return await createUserWithEmailAndPassword(auth, email, password);
+    const credential = await createUserWithEmailAndPassword(auth, email, password);
+    if (credential && credential.user) {
+      try {
+        await sendEmailVerification(credential.user);
+      } catch (error) {
+        // no-op: surface error to caller if needed
+      }
+    }
+    return credential;
   };
 
   const login = async (email, password) => {
