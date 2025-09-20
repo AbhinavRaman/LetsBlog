@@ -14,7 +14,7 @@ const NavBar = () => {
         {/* Logo + Title */}
         <div className="flex items-center gap-3">
           <img src={logo} alt="logo" className="h-12 md:h-16 rounded-xl shadow-md bg-white p-1" />
-          <h1 className="text-2xl md:text-3xl font-bold tracking-tight">LetsBlog.com</h1>
+          <h1 className="text-2xl md:text-3xl font-bold tracking-tight">LetssBlog</h1>
         </div>
 
         {/* Desktop Menu */}
